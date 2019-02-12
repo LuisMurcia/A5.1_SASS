@@ -1,0 +1,181 @@
+/***** 1 - VARIABLES *****/
+
+$colorOne: #356618;
+$colorTwo: #96b285;
+$colorThree: #ffffff;
+$standardFont: Arial, Helvetica, sans-serif;
+$standardFontSize: 14px;
+
+/***** 2 - MIXINS *****/
+
+@mixin mix1($property) {
+  color: $property;
+}
+@mixin mix2($property) {
+  color: $property;
+}
+@mixin mix3($property) {
+  color: $property;
+}
+
+/***** 3 - INHERITANCE *****/
+
+%fonts {
+  font-family: $standardFont;
+  font-size: $standardFontSize;
+}
+%colorBlock {
+  background: $colorTwo;
+  color: $colorOne;
+}
+
+/***** 4 - IMPORT *****/
+
+@import 'body';
+@import 'footer';
+
+
+
+body {
+  background: url(../images/bg-body.jpg) repeat;
+  color: $colorOne;
+  @extend %fonts;
+  margin: 0;
+  min-width: (94px * 10);
+  padding: 0;
+}
+
+a {
+  outline: none;
+}
+
+img {
+  border: 0;
+}
+
+p {
+  margin: 0;
+  text-align: justify;
+  a {
+    color: $colorOne;
+    &:hover {
+      @include mix1(#66a143);
+    }
+  }
+}
+
+#page {
+  background: $colorOne;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: (9000px / 10);
+}
+
+#header {
+  background: $colorThree;
+  height: 151px;
+  a#logo {
+    display: block;
+    height: 86px;
+    padding: 15px 0 0 20px;
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  > ul {
+    background: #4b4b4b;
+    height: 49px;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: (9000px / 10);
+    > li {
+      float: left;
+      position: relative;
+      width: 150px;
+      > a {
+        color: #f0f2c9;
+        display: block;
+        letter-spacing: 0.1em;
+        line-height: 49px;
+        text-align: center;
+        text-decoration: none;
+      }
+      &.current > a {
+        @extend %colorBlock;
+        &:hover {
+          @extend %colorBlock;
+        }
+      }
+    }
+  }
+  ul li {
+    ul li.current a {
+      @extend %colorBlock;
+      &:hover {
+        @extend %colorBlock;
+      }
+    }
+    a:hover {
+      background: #daead0;
+      color: #1b330c;
+    }
+    ul {
+      list-style: none;
+      left: -99999px;
+      margin: 0;
+      overflow: visible;
+      padding: 11px 0 0;
+      position: absolute;
+      top: 49px;
+      width: 150px;
+      z-index: 2;
+    }
+    &:hover ul {
+      left: 0;
+      top: 49px;
+    }
+    ul li {
+      background: #4B4B4B;
+      a {
+        color: #f0f2c9;
+        display: block;
+        line-height: 31px;
+        text-align: center;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#footer div div ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#body div#content div#sidebar div {
+  ul li {
+    color: #818181;
+    letter-spacing: 0.028em;
+    line-height: 24px;
+    a {
+      color: #818181;
+      text-decoration: none;
+      &:hover {
+        @include mix3(#4b4b4f);
+      }
+    }
+  }
+  &:first-child ul li {
+    letter-spacing: 0.024em;
+    line-height: 18px;
+    margin: 15px 0 0;
+  }
+  p {
+    color: #818181;
+    padding: 0;
+  }
+}
